@@ -8,8 +8,8 @@ Reproducible notes and tools for studying Sony **ILCE-7C** (the original
 A7C) firmware **Ver. 2.03** through official update files and Sony's USB
 service mode.
 
-> **Status: updater package structure identified; fwtool unpacking and
-> physical-camera work not yet tested.** See [docs/A7C_PREP.md](docs/A7C_PREP.md) for the target
+> **Status: firmware unpacking confirmed; property analysis (needs
+> 32-bit script support) and physical-camera work not yet tested.** See [docs/A7C_PREP.md](docs/A7C_PREP.md) for the target
 > definition and research plan, and [TODO.md](TODO.md) for the remaining
 > hardware-only tasks.
 
@@ -37,15 +37,15 @@ follows the same method.
 | Firmware | Ver. 2.03 (Sony, 2026-04-15) |
 | Distribution | Updater `Update_ILCE7CV203.exe` (367,091,632 bytes) |
 | SoC | CXD90045 (BIONZ X) |
-| FDAT model ID | `0x91030019` (fwtool registration; to confirm via config.yaml) |
-| Crypter | To be confirmed |
+| FDAT model ID | `0x91030019` (confirmed via config.yaml) |
+| Crypter | `CXD90045_k0` |
 
 ## Research status
 
 | Feature | Status |
 | --- | --- |
-| Firmware unpacking (fwtool, CXD90045) | Package structure identified; DAT unpack not yet confirmed (docs/FIRMWARE_EXTRACTION.md) |
-| Property inventory (BKID) | Pending analysis (needs appFw.so) |
+| Firmware unpacking (fwtool, CXD90045) | Confirmed — model `0x91030019` / 2.03 / `CXD90045_k0` (docs/FIRMWARE_EXTRACTION.md) |
+| Property inventory (BKID) | Pending — target is `libObj.so`; scripts assume 64-bit ELF and need 32-bit support |
 | Product class | Pending analysis |
 | Service mode | Publicly reported working on ILCE-7C, but untested for this repository |
 | Settings backup | Untested |

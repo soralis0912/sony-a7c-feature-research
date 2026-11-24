@@ -4,11 +4,12 @@
 ここに残っているのは **ILCE-7C 実機と物理操作が必須** のものだけ。
 （バックアップファイル自体は公開しないこと。）
 
-## 0. 展開結果の共有（解析を進めるため）
+## 0. ファームウェア解析（実機不要・進行中）
 
-- [ ] unpack した `unpacked/config.yaml` の中身（model / version / crypterName）を共有する
-- [ ] 解析用に `nflasha15_unpacked/lib/appFw.so` を共有する
-  （これがあれば BKID 一覧と feature manager の解析をリモートで回せる）
+- [x] exe → CAB → DAT → fwtool unpack まで完了し、config.yaml の確定値を記録した
+  （model `0x91030019` / 2.03 / `CXD90045_k0`）
+- [ ] 解析スクリプトの 32-bit ELF 対応（対象は `libObj.so`）をして
+  BKID 一覧を抽出する
 
 ## 1. サービスモード接続テスト
 

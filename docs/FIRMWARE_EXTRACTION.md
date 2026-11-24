@@ -25,6 +25,11 @@ exe は Sony Packaging Tool（Packman）の自己解凍形式で、PE 本体（4
 CAB 内に `FirmwareData_ILCE7CV203.dat`（UFU コンテナ：`\x89UFU` 魔数＋
 DATV/PROV/UDID/FDAT の TLV チェーン）が入っている。これが実質のファームウェア本体。
 
+| DAT | 内容 |
+| --- | --- |
+| サイズ | 363,197,944 バイト |
+| SHA-256 | `b5c20ed18b656d22611aa0ee0c83c168bd247030dc7bcf249bdb60d1168c3f39` |
+
 ## 3. DAT → 展開（fwtool）
 
 ```bash
@@ -35,20 +40,30 @@ python fwtool.py unpack -f BODYDATA.DAT -o unpacked
 fwtool の `devices.yml` には ILCE-7C が登録済み
 （arch `CXD90045`、model `0x91030019`）。
 
-ILCE-7C の DAT に対する fwtool の展開は **まだ未確認**
-（このリポジトリ作成時に見た unpack 成功ログは ILCE-7CM2 のもので、
-ILCE-7C のものではないことが後から判明した）。
-CXD90045 世代の他機種と同様であれば、展開後は以下の構成になる想定だが、
-実測で確認するまでは確定情報として扱わない：
+**展開確認済み（2026-11-24）**。`unpacked/config.yaml` の確定値：
+
+| 項目 | 値 |
+| --- | --- |
+| model | `0x91030019` |
+| version | `2.03` |
+| region | `0` |
+| crypter | `CXD90045_k0` |
+
+展開後の構成（実測。CXD90057 世代とは異なる）：
 
 ```text
-unpacked/firmware.tar_unpacked/0700_part_image/dev/
-  nflasha15  （lib/appFw.so を含む想定）
-  nflasha3 / nflasha7 / nflasha8
-unpacked/firmware.tar_unpacked/0750_nor_loader/loader_nor.tar
+unpacked/firmware.tar_unpacked/
+  0400_updater/dev/nflasha1   （boot/initrd.img を含む）
+  0700_part_image/dev/
+    nflasha15  nflasha3  nflasha5  nflasha7
+  0800_appli/  ほか
 ```
 
-`unpacked/config.yaml` の確定値（model / version / crypter）は記録待ち。
-判明次第このドキュメントに追記する。
+メインアプリは `appFw.so` という名前では存在しない。この世代では
+プロパティ名（`BKID_APP_*`）は `nflasha15_unpacked/lib/libObj.so`
+（21,285,392 バイト）に含まれている。さらにこの世代のユーザーランドは
+**32-bit ARM ELF** であり、64-bit 前提の解析スクリプトはそのままでは使えない
+（`scripts/appfw_elf.py` が「expected a 64-bit ELF file」で停止する）。
+解析には 32-bit 対応が必要。
 
 ファームウェア本体・展開物はこのリポジトリに含めない。
