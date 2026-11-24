@@ -59,11 +59,13 @@ unpacked/firmware.tar_unpacked/
   0800_appli/  ほか
 ```
 
-メインアプリは `appFw.so` という名前では存在しない。この世代では
-プロパティ名（`BKID_APP_*`）は `nflasha15_unpacked/lib/libObj.so`
-（21,285,392 バイト）に含まれている。さらにこの世代のユーザーランドは
-**32-bit ARM ELF** であり、64-bit 前提の解析スクリプトはそのままでは使えない
+メインアプリは `appFw.so` という名前では存在しない。`BKID_APP_*` の
+文字列は `nflasha15_unpacked/lib/libObj.so`（21,285,392 バイト）にあるが、
+デバッグログの書式文字列のみで、新世代のような名前レコード表は
+ファームウェア全体のどこにも存在しない（全ツリー走査で確認）。
+さらにこの世代のユーザーランドは **32-bit ARM ELF** であり、64-bit 前提の
+解析スクリプトはそのままでは使えない
 （`scripts/appfw_elf.py` が「expected a 64-bit ELF file」で停止する）。
-解析には 32-bit 対応が必要。
+32-bit 読み取り基盤は `scripts/appfw_elf32.py` として用意した。
 
 ファームウェア本体・展開物はこのリポジトリに含めない。

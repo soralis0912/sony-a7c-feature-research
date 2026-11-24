@@ -45,7 +45,7 @@ follows the same method.
 | Feature | Status |
 | --- | --- |
 | Firmware unpacking (fwtool, CXD90045) | Confirmed — model `0x91030019` / 2.03 / `CXD90045_k0` (docs/FIRMWARE_EXTRACTION.md) |
-| Property inventory (BKID) | Pending — target is `libObj.so`; scripts assume 64-bit ELF and need 32-bit support |
+| Property inventory (BKID) | This generation's firmware has no name table (docs/A7C_PREP.md); identification needs diffing against a live backup |
 | Product class | Pending analysis |
 | Service mode | Publicly reported working on ILCE-7C, but untested for this repository |
 | Settings backup | Untested |
