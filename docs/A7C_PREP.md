@@ -23,10 +23,11 @@
    `FirmwareData_ILCE7CV203.dat` が入っていることを確認した。
    詳細は [FIRMWARE_EXTRACTION.md](FIRMWARE_EXTRACTION.md)。
 
-2. **完了（2026-11-24）— fwtool での展開。**
-   DAT を fwtool で unpack でき、`nflasha15 / nflasha3 / nflasha7 / nflasha8`
-   と `0750_nor_loader` が展開できることを確認した。
-   `config.yaml` の確定値（model / version / crypter）の記録が残っている。
+2. **未確認 — fwtool での展開。**
+   ILCE-7C の DAT の unpack はまだ実測していない（作成時に参照した成功ログは
+   ILCE-7CM2 のものだった）。CAB の LZX 展開またはアップデータからの
+   DAT 取り出しを済ませてから、unpack と `config.yaml` の確定値
+   （model / version / crypter）を記録する。
 
 3. **次 — プロパティ一覧と feature manager の解析。**
    展開した ILCE-7C の `appFw.so` から `BKID_APP_*` の対応表と

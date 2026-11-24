@@ -8,8 +8,8 @@ Reproducible notes and tools for studying Sony **ILCE-7C** (the original
 A7C) firmware **Ver. 2.03** through official update files and Sony's USB
 service mode.
 
-> **Status: firmware unpacking confirmed; physical-camera work not yet
-> tested.** See [docs/A7C_PREP.md](docs/A7C_PREP.md) for the target
+> **Status: updater package structure identified; fwtool unpacking and
+> physical-camera work not yet tested.** See [docs/A7C_PREP.md](docs/A7C_PREP.md) for the target
 > definition and research plan, and [TODO.md](TODO.md) for the remaining
 > hardware-only tasks.
 
@@ -44,7 +44,7 @@ follows the same method.
 
 | Feature | Status |
 | --- | --- |
-| Firmware unpacking (fwtool, CXD90045) | Package structure identified, unpack confirmed (docs/FIRMWARE_EXTRACTION.md) |
+| Firmware unpacking (fwtool, CXD90045) | Package structure identified; DAT unpack not yet confirmed (docs/FIRMWARE_EXTRACTION.md) |
 | Property inventory (BKID) | Pending analysis (needs appFw.so) |
 | Product class | Pending analysis |
 | Service mode | Publicly reported working on ILCE-7C, but untested for this repository |

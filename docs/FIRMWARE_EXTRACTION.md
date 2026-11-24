@@ -35,14 +35,16 @@ python fwtool.py unpack -f BODYDATA.DAT -o unpacked
 fwtool の `devices.yml` には ILCE-7C が登録済み
 （arch `CXD90045`、model `0x91030019`）。
 
-展開できることは確認済みで、構成は以下のパーティションを含む：
+ILCE-7C の DAT に対する fwtool の展開は **まだ未確認**
+（このリポジトリ作成時に見た unpack 成功ログは ILCE-7CM2 のもので、
+ILCE-7C のものではないことが後から判明した）。
+CXD90045 世代の他機種と同様であれば、展開後は以下の構成になる想定だが、
+実測で確認するまでは確定情報として扱わない：
 
 ```text
 unpacked/firmware.tar_unpacked/0700_part_image/dev/
-  nflasha15  （lib/appFw.so を含む）
-  nflasha3   （initrd.img を含む）
-  nflasha7
-  nflasha8
+  nflasha15  （lib/appFw.so を含む想定）
+  nflasha3 / nflasha7 / nflasha8
 unpacked/firmware.tar_unpacked/0750_nor_loader/loader_nor.tar
 ```
 
